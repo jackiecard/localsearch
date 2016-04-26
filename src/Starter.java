@@ -12,17 +12,16 @@ public class Starter {
     // Must have blank spaces " : " between variable + value
     public static String file = "/Users/Jackie/IdeaProjects/homework10/src/files/dj38.tsp";
 
-    public static TSPObject tsp = new TSPObject();
-
     public static void main (String [] args){
-        parser(file);
+        TSPObject tsp = parser(file);
+        System.out.println(tsp.toString());
     }
 
-    public static void parser(String fileName){
+    public static TSPObject parser(String fileName){
+        TSPObject tsp = new TSPObject();
         try {
             File f = new File(fileName);
             Scanner sc = new Scanner(f);
-
 
             String name = "";
             ArrayList<String> comments = new ArrayList<>();
@@ -79,11 +78,11 @@ public class Starter {
                 tsp = new TSPObject(name, comments, type, dimension, edge, nodesCoord);
             }
 
-            System.out.println(tsp.toString());
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        return tsp;
     }
 
 }
