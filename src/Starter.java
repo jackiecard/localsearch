@@ -12,6 +12,8 @@ public class Starter {
     // Must have blank spaces " : " between variable + value
     public static String file = "/Users/Jackie/IdeaProjects/homework10/src/files/dj38.tsp";
 
+    public static TSPObject tsp = new TSPObject();
+
     public static void main (String [] args){
         parser(file);
     }
@@ -21,7 +23,7 @@ public class Starter {
             File f = new File(fileName);
             Scanner sc = new Scanner(f);
 
-            TSPObject tsp = new TSPObject();
+
             String name = "";
             ArrayList<String> comments = new ArrayList<>();
             String type = "";
