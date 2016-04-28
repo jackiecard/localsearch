@@ -13,7 +13,7 @@ public class Starter {
     // Must have blank spaces " : " between variable + value
     public static String file = "/Users/Jackie/IdeaProjects/homework10/src/files/wi29.tsp";
 
-    public static void main (String [] args){
+    public static void main (String [] args){''
         TSPObject tsp = parser(file);
 
         ArrayList<NodeCoordSection> bestPath = new ArrayList<>();
