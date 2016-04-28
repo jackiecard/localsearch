@@ -1,5 +1,5 @@
 /**
- * Created by jackie on 4/26/16.
+ * Created by Jacqueline Cardozo, Fernando Silva, Paulo Victor Sarmento on 4/26/16.
  */
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,11 +10,52 @@ public class Starter {
 
     // The file must end with "EOF" on the last line
     // Must have blank spaces " : " between variable + value
-    public static String file = "/Users/Jackie/IdeaProjects/homework10/src/files/dj38.tsp";
+    public static String file = "/Users/Jackie/IdeaProjects/homework10/src/files/wi29.tsp";
 
     public static void main (String [] args){
         TSPObject tsp = parser(file);
-        System.out.println(tsp.toString());
+
+        ArrayList<NodeCoordSection> bestPath = new ArrayList<>();
+        ArrayList<NodeCoordSection> listOfNodes = tsp.getNodeCoord();
+
+        int [] distances = new int[listOfNodes.size()];
+        int tourCost = 0;
+        bestPath.add(listOfNodes.get(0));
+        listOfNodes.remove(0);
+        NodeCoordSection bestNode = new NodeCoordSection();
+        distances[0] = 0;
+
+        while(!listOfNodes.isEmpty()) {
+            int listSize = listOfNodes.size();
+            int lowestDistance = 10000;
+            NodeCoordSection lowestDistanceNode = new NodeCoordSection();
+
+            for (NodeCoordSection node : listOfNodes) {
+                    NodeCoordSection firstNode = bestPath.get(bestPath.size() - 1);
+                    Comparator comparator = new Comparator(firstNode, node);
+
+                    //System.out.println("Distance from " + firstNode.getId() + " to " + node.getId() + " is: " + comparator.getDistance());
+
+                    if(comparator.getDistance() < lowestDistance){
+                        lowestDistance = comparator.getDistance();
+                        lowestDistanceNode = node;
+                    }
+            }
+            distances[bestPath.size()] = lowestDistance;
+            tourCost += lowestDistance;
+            bestPath.add(lowestDistanceNode);
+            listOfNodes.remove(listOfNodes.indexOf(lowestDistanceNode));
+        }
+
+        int i = 0;
+        System.out.println(tourCost);
+        for (NodeCoordSection node : bestPath) {
+            System.out.print(node.getId() + ",");
+            /*System.out.println(node.toString());
+            System.out.println("Distance: " + distances[i] + "\n");*/
+            i++;
+        }
+//        System.out.println(tsp.toString());
     }
 
     public static TSPObject parser(String fileName){
