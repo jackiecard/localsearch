@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+// This program is performing a search using Greedy Algorithm to solve the Traveling Salesperson problem
 public class Starter {
 
     // The file must end with "EOF" on the last line
